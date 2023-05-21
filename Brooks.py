@@ -34,6 +34,8 @@ class GraphColoringApp(tk.Tk):
         self.color_button.pack(side=tk.LEFT)
         self.connect_button = tk.Button(self, text="Connect Vertices", command=self.connect_vertices)
         self.connect_button.pack(side=tk.LEFT)
+        self.info_button = tk.Button(self, text="Graph Information", command=self.display_graph_info)
+        self.info_button.pack(side=tk.LEFT)
         self.vertices = []
         self.edges = []
         self.selected_vertex = None
@@ -159,6 +161,50 @@ class GraphColoringApp(tk.Tk):
         hex_values = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#00FFFF", "#FF00FF"]
         return hex_values[color % len(hex_values)]
 
+    def display_graph_info(self):
+        """
+        Display the graph information window.
+
+        This method creates a new window to display the chromatic coloring number and the maximum degree of the graph.
+        """
+        graph_info_window = tk.Toplevel(self)
+        graph_info_window.title("Graph Information")
+        graph_info_window.geometry("200x100")
+
+        chi = self.calculate_chromatic_number()
+        big_delta = self.calculate_max_degree()
+
+        chi_label = tk.Label(graph_info_window, text="Chromatic Number (chi):")
+        chi_value_label = tk.Label(graph_info_window, text=str(chi))
+        big_delta_label = tk.Label(graph_info_window, text="Max Degree (big_delta):")
+        big_delta_value_label = tk.Label(graph_info_window, text=str(big_delta))
+
+        chi_label.pack()
+        chi_value_label.pack()
+        big_delta_label.pack()
+        big_delta_value_label.pack()
+
+    def calculate_chromatic_number(self):
+        """
+        Calculate the chromatic coloring number (chi) of the graph.
+
+        Returns:
+            int: The chromatic coloring number.
+        """
+        if len(self.vertices) == 0:
+            return 0
+        return max(vertex.color for vertex in self.vertices) + 1
+
+    def calculate_max_degree(self):
+        """
+        Calculate the maximum degree (big_delta) of the graph.
+
+        Returns:
+            int: The maximum degree.
+        """
+        if len(self.vertices) == 0:
+            return 0
+        return max(len(vertex.connected_vertices) for vertex in self.vertices)
 
 class Vertex:
     """
