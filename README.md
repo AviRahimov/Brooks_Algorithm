@@ -40,4 +40,3 @@ This project is licensed under the MIT License.
 ## Acknowledgements
 - The application uses the tkinter library for the graphical user interface.
 - The graph coloring algorithm is based on Brooks' Coloring Algorithm.
-Feel free to customize this README file to suit your needs.
