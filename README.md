@@ -14,11 +14,11 @@ This is a Python application that allows users to draw vertices on a canvas, con
 ## Installation
 
 1. Make sure you have Python 3 installed on your system.
-2. Clone this repository or download the `graph_coloring.py` file.
+2. Clone this repository([https://github.com/AviRahimov/Brooks_Algorithm.git]) or download the `Brooks.py` file.
 
 ## Usage
 
-1. Open a terminal or command prompt and navigate to the directory where the `graph_coloring.py` file is located.
+1. Open a terminal or command prompt and navigate to the directory where the `Brooks.py` file is located.
 2. Run the following command to start the application:
 
 ```bash```
