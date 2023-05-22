@@ -31,6 +31,9 @@ python graph_coloring.py
 7. Click the "Color Graph" button to apply Brooks' Coloring Algorithm and color the graph.
 8. Use the "Graph Information" button to display the chromatic coloring number and maximum degree of the graph.
 
+## Exmaple of clique-3 
+![alt text](https://github.com/AviRahimov/Brooks_Algorithm/blob/master/graph_coloring.jpg?raw=true)
+
 ## Contributing
 Contributions are welcome! If you find any issues or have suggestions for improvement, please open an issue or submit a pull request.
 
