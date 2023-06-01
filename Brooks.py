@@ -62,24 +62,40 @@ class GraphColoringApp(tk.Tk):
         """
         if len(self.vertices) == 0:
             return
+
         # Clear previous colors
         for vertex in self.vertices:
             vertex.color = None
 
-        # Sort vertices in descending order of degrees
-        sorted_vertices = sorted(self.vertices, key=lambda v: len(v.connected_vertices), reverse=True)
-        colors = [False] * len(sorted_vertices)
-        colors[0] = True  # Color the first vertex with 0
-        for vertex in sorted_vertices:
-            available_colors = [True] * len(sorted_vertices)  # All colors are initially available
+        # Find the vertex with the maximum degree
+        max_degree_vertex = max(self.vertices, key=lambda v: len(v.connected_vertices))
+
+        # Color the vertex with the maximum degree using color 0
+        max_degree_vertex.color = 0
+
+        # Create a list to keep track of available colors
+        available_colors = [True]
+
+        # Color the remaining vertices
+        for vertex in self.vertices:
+            if vertex == max_degree_vertex:
+                continue
+
+            # Initialize the list of available colors for the current vertex
+            available_colors = [True] * (len(self.vertices) + 1)
+
+            # Mark the colors of neighboring vertices as unavailable
             for neighbor in vertex.connected_vertices:
                 if neighbor.color is not None:
-                    available_colors[neighbor.color] = False  # Mark neighbor's color as unavailable
-            for color in range(len(sorted_vertices)):
-                if available_colors[color]:
-                    vertex.color = color
-                    colors[vertex.index] = color
-                    break
+                    available_colors[neighbor.color] = False
+
+            # Find the smallest available color for the current vertex
+            color = next(i for i, is_available in enumerate(available_colors) if is_available)
+
+            # Assign the color to the current vertex
+            vertex.color = color
+
+        # Visualization code
         for vertex in self.vertices:
             x, y = vertex.position
             self.canvas.create_oval(x - 10, y - 10, x + 10, y + 10, fill=self.color_to_hex(vertex.color))
