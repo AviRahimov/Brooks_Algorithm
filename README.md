@@ -37,9 +37,6 @@ python graph_coloring.py
 ## Contributing
 Contributions are welcome! If you find any issues or have suggestions for improvement, please open an issue or submit a pull request.
 
-## License
-This project is licensed under the MIT License.
-
 ## Acknowledgements
 - The application uses the tkinter library for the graphical user interface.
 - The graph coloring algorithm is based on Brooks' Coloring Algorithm.
